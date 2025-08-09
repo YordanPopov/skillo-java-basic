@@ -26,12 +26,31 @@ public class ToDoList {
                     String task = userInput.nextLine();
                     tasks.add(task);
                     isCompleted.add(false);
-
                     System.out.println("Task is added successfully!");
                     break;
 
-                case 2: break;
-                case 3: break;
+                case 2:
+                    System.out.print("Enter task number to mark as completed: ");
+                    int index = userInput.nextInt();
+
+                    if (index >= 1 && index <= tasks.size()) {
+                        isCompleted.set(index - 1, true);
+                        System.out.println("Task marked as completed!");
+                    } else {
+                        System.out.println("Invalid task number!");
+                    }
+                    break;
+
+                case 3:
+                    for (int i = tasks.size() - 1; i >= 0; i--) {
+                        if (isCompleted.get(i)) {
+                            tasks.remove(i);
+                            isCompleted.remove(i);
+                        }
+                    }
+
+                    System.out.println("Completed taks removed!");
+                    break;
                 case 4:
                     if (tasks.isEmpty()) {
                         System.out.println("Task list is empty!");
